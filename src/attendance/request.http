@@ -1,0 +1,41 @@
+
+### Get attendances
+GET http://localhost:3000/api/v1/attendances
+
+### Get attendance by id
+GET http://localhost:3000/api/v1/attendance/1
+
+### Get attendance user by attendance id
+GET http://localhost:3000/api/v1/attendance/user/1
+
+### Get attendance break by attendance id
+GET http://localhost:3000/api/v1/attendance/break/1
+
+### Get attendance wage by attendance id
+GET http://localhost:3000/api/v1/attendance/wage/1
+
+### Get attendance by period
+GET http://localhost:3000/api/v1/attendances?period=today
+
+### Get attendance by store
+GET http://localhost:3000/api/v1/attendances?storeId=1
+
+### Get attendance by user
+GET http://localhost:3000/api/v1/attendances?name=dani
+
+### Get attendance pagination
+GET http://localhost:3000/api/v1/attendances?limit=10&page=1
+
+### Add attendance
+POST http://localhost:3000/api/v1/attendances/add
+
+### Update attendance
+PUT http://localhost:3000/api/v1/attendance
+
+### Delete attendance by id
+DELETE http://localhost:3000/api/v1/attendance/1
+
+### Delete multiple attendance
+DELETE http://localhost:3000/api/v1/attendance?ids=4,5
+
+

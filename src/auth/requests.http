@@ -1,0 +1,42 @@
+# Auth
+### Who am I - Get user by token
+GET http://localhost:3000/api/v1/auth/whoami
+### Get user by token
+GET http://localhost:3000/api/v1/auth/whoami
+accept: */*
+Authorization: Bearer <token>
+
+### Signup a new user
+POST http://localhost:3000/api/v1/auth/signup
+Content-Type: application/json
+
+{
+  "test": "test",
+  "email": "azc.baltazar@arkconsult.com",
+  "username": "daniza_baltazar",
+  "password": "$passwordHere$252810",
+  "firstName": "daniza",
+  "lastName": "baltazar",
+  "mobile": "+639171234567"
+}
+
+### Signin a user
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+{
+  "email": "azc.baltazar@arkconsult.com",
+  "password": "$passwordHere$252810"
+}
+
+### Signin an existing user
+POST http://localhost:3000/auth/login
+content-type: application/json
+{
+  "email": "azc.baltazar@arkconsult.com",
+  "password": "$passwordHere$252810"
+}
+
+### Generate new tokens using refresh token
+POST http://localhost:3000/api/v1/auth/token
+accept: */*
+Authorization: Bearer <refresh_token>

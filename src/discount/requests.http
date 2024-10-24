@@ -1,0 +1,94 @@
+### Create add new discount
+POST http://localhost:3000/discounts
+content-type: application/json
+# properies:
+# discountStatus    => active | scheduled | expired | archived
+# discountType      => Discount all items of the same type | Total Discount | Discount 1 item
+# notes: need to create store first
+
+{
+    "discountCode": "CODE123",
+    "discountName": "Discount 1",
+    "storeIds": [1],
+    "discountType": "Total Discount",
+    "discountValue": 15,
+    "discountStatus": "active",
+    "minimumSpend": 100,
+    "limitOverall": 10,
+    "limitCustomer": 2,
+    "startDate": "2024-07-22T07:00:00+07:00",
+    "endDate": "2024-07-25T07:00:00+07:00"
+}
+
+### Get all discount
+GET http://localhost:3000/discounts
+# query params:
+# search    => only for discountCode<string> and discountName<string>
+# date      => today | last7days | lastmonth | lastyear | alltime
+# status    => active | expired | archived | scheduled
+# sortby    => discountCode | discountStatus | totalUsed
+# page      => <number> | default: 1
+# limit     => <number> | default: 10
+content-type: application/json
+
+{}
+
+### Get discount by discountID
+GET http://localhost:3000/discounts/1
+content-type: application/json
+
+{}
+
+### Update Discount
+PATCH http://localhost:3000/discounts/1
+content-type: application/json
+
+{
+    "discountCode": "CODE321",
+    "discountName": "Discount 1",
+    "storeId": 2,
+    "discountType": "Total Discount",
+    "discountValue": 15,
+    "discountStatus": "active",
+    "startDate": "2024-07-09",
+    "endDate": "2024-07-09"
+}
+
+### Delete by discountID
+DELETE http://localhost:3000/discounts/1
+
+### Delete Bulk with discountID
+DELETE http://localhost:3000/discounts?ids=1,2
+
+### Get Discount By StoreId
+GET http://localhost:3000/discounts/stores/1
+
+### Check Discount
+POST http://localhost:3000/discounts/check-discount
+content-type: application/json
+
+{
+    "storeId": 1,
+    "customerId": 1,
+    "discountCode": "CODE123",
+    "amount": 1
+}
+
+
+### Store Discount Transaction (you need yo make transaction first)
+POST http://localhost:3000/discounts/transaction
+content-type: application/json
+
+{
+    "transactionId": 1,
+    "storeId": 1,
+    "customerId": 1,
+    "discountCode": "CODE123",
+    "amount": 1
+}
+
+### Get all Discount Summary
+GET http://localhost:3000/discounts/transaction/summary
+
+### Get detail Discount Summary
+GET http://localhost:3000/discounts/transaction/summary/1

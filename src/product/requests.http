@@ -1,0 +1,38 @@
+#product
+
+### add product
+POST http://localhost:3000/api/v1/product/add
+content-type: application/json
+
+{
+  "title": "Product4",
+  "cost": 200,
+  "price": 300,
+  "unit": 50.12,
+  "stock": 500,
+  "sk_plu": "plu",
+  "description": "product is good",
+  "store": 1,
+  "category": 2
+}
+
+### edit product
+PUT http://localhost:3000/api/v1/product/2
+content-type: application/json
+
+{
+  "title": "Product1",
+  "cost": 2000,
+  "price": 100,
+  "store": 1,
+  "category": 1
+}
+
+### delete product
+DELETE http://localhost:3000/api/v1/product/2
+
+### sort
+GET http://localhost:3000/api/v1/product/list?page=1&size=10
+
+### details product
+GET http://localhost:3000/api/v1/product/1

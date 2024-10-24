@@ -1,0 +1,46 @@
+# Get All Purchases with Pagination, Sorting, and Filtering
+
+GET http://localhost:3000/api/v1/purchases?page=0&pageSize=10&sortBy=purchaseDate&sortOrder=ASC&startDate=2024-08-01&endDate=2024-08-31
+
+
+# Create a New Purchase
+
+POST http://localhost:3000/api/v1/purchases
+Content-Type: application/json
+
+{
+    "inventoryItemID": 1,
+    "storeID": 2,
+    "supplierID": 3,
+    "purchaseDate": "2024-08-21T03:05:15.793Z",
+    "expirationDate": "2025-08-17T03:05:15.793Z",
+    "purchasePrice": 100.00,
+    "quantity": 10,
+    "note": "Initial stock for the new store",
+    "unit": "kg"
+}
+
+# Update a Purchase Item
+
+PUT http://localhost:3000/api/v1/purchases/1
+Content-Type: application/json
+
+{
+    "inventoryItemID": 2,
+    "storeID": 3,
+    "supplierID": 4,
+    "purchaseDate": "2024-08-22T03:05:15.793Z",
+    "expirationDate": "2025-08-18T03:05:15.793Z",
+    "purchasePrice": 120.00,
+    "quantity": 15,
+    "note": "Updated stock details",
+    "unit": "g"
+}
+
+# Delete a Purchase Item
+
+DELETE http://localhost:3000/api/v1/purchases/1
+
+# Delete Multiple Purchases
+
+DELETE http://localhost:3000/api/v1/purchases?ids=1,2,3

@@ -1,0 +1,79 @@
+#transaction
+
+### add transaction
+POST http://localhost:3000/api/v1/transaction/add
+accept: */*
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvYmplY3QiOnsicmVnaXN0cmF0aW9uVGltZXN0YW1wIjoiMjAyNC0wNy0xOFQwOToyMzo0Ni4wMDBaIiwibGFzdFVwZGF0ZVRpbWVzdGFtcCI6IjIwMjQtMDctMThUMDk6MjM6NDYuMDAwWiIsImRlbGV0ZWRBdCI6bnVsbCwiaWQiOjEsInVzZXJuYW1lIjoiZGFuaXphX2JhbHRhemFyIiwid2FnZUlkIjpudWxsLCJyb2xlIjoiYWRtaW4iLCJzdGF0dXMiOiJhY3RpdmUiLCJwaW4iOm51bGwsImdlbmVyYWxJbmZvIjp7ImlkIjoxLCJmaXJzdE5hbWUiOiJkYW5pemEiLCJsYXN0TmFtZSI6ImJhbHRhemFyIiwiYmlydGhkYXkiOm51bGwsIm1vYmlsZU51bWJlciI6NjM5MTcxMjM0NTY3LCJ0ZWxlcGhvbmUiOm51bGwsImVtYWlsIjoiYXpjLmJhbHRhemFyQGFya2NvbnN1bHQuY29tIiwic3RyZWV0IjpudWxsLCJjaXR5IjpudWxsLCJ6aXBDb2RlIjpudWxsfX0sImlhdCI6MTcyMTMwMTY5OCwiZXhwIjoxNzIxMzA1Mjk4fQ.tj3RK53X8Ndf9geR7flIc0sAxHfGuFyo0NS2K6yIdT8
+content-type: application/json
+
+{
+  "store": 2,
+  "customer": 2,
+  "staff": 1,
+  "serviceChargeRate": 1000,
+  "tip": 52,
+  "salesTaxRate": 400,
+  "paymentType": "cash",
+  "status": "approved",
+  "type": "counter",
+  "transactionDate": "2024-07-01",
+  "note": "Transaction 3",
+  "item": [
+    {
+      "product": 1,
+      "quantity": 2,
+      "isRefund": true
+    },
+    {
+      "product": 2,
+      "quantity": 1,
+      "isRefund": true
+    }
+  ]
+}
+
+### edit transaction
+PUT http://localhost:3000/api/v1/transaction/2
+accept: */*
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvYmplY3QiOnsicmVnaXN0cmF0aW9uVGltZXN0YW1wIjoiMjAyNC0wNy0xOFQwOToyMzo0Ni4wMDBaIiwibGFzdFVwZGF0ZVRpbWVzdGFtcCI6IjIwMjQtMDctMThUMDk6MjM6NDYuMDAwWiIsImRlbGV0ZWRBdCI6bnVsbCwiaWQiOjEsInVzZXJuYW1lIjoiZGFuaXphX2JhbHRhemFyIiwid2FnZUlkIjpudWxsLCJyb2xlIjoiYWRtaW4iLCJzdGF0dXMiOiJhY3RpdmUiLCJwaW4iOm51bGwsImdlbmVyYWxJbmZvIjp7ImlkIjoxLCJmaXJzdE5hbWUiOiJkYW5pemEiLCJsYXN0TmFtZSI6ImJhbHRhemFyIiwiYmlydGhkYXkiOm51bGwsIm1vYmlsZU51bWJlciI6NjM5MTcxMjM0NTY3LCJ0ZWxlcGhvbmUiOm51bGwsImVtYWlsIjoiYXpjLmJhbHRhemFyQGFya2NvbnN1bHQuY29tIiwic3RyZWV0IjpudWxsLCJjaXR5IjpudWxsLCJ6aXBDb2RlIjpudWxsfX0sImlhdCI6MTcyMTMxMzU5NiwiZXhwIjoxNzIxMzE3MTk2fQ.Tn2d--aq4Oclldpbj8bFoM4iUJEnRnY6zWaZA1n6Imk
+content-type: application/json
+
+{
+  "store": 1,
+  "customer": 2,
+  "staff": 1,
+  "serviceChargeRate": 50000,
+  "tip": 50,
+  "salesTaxRate": 500,
+  "paymentType": "cash",
+  "status": "approved",
+  "type": "counter",
+  "transactionDate": "2024-06-01",
+  "note": "Transaction 1",
+  "item": [
+    {
+      "transactionItemId": 7,
+      "product": 1,
+      "quantity": 2,
+      "isRefund": true
+    }
+  ],
+  "deleteItem": [
+    "4"
+  ]
+}
+
+### delete transaction
+DELETE http://localhost:3000/api/v1/transaction/2
+accept: */*
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvYmplY3QiOnsicmVnaXN0cmF0aW9uVGltZXN0YW1wIjoiMjAyNC0wNy0xOFQwOToyMzo0Ni4wMDBaIiwibGFzdFVwZGF0ZVRpbWVzdGFtcCI6IjIwMjQtMDctMThUMDk6MjM6NDYuMDAwWiIsImRlbGV0ZWRBdCI6bnVsbCwiaWQiOjEsInVzZXJuYW1lIjoiZGFuaXphX2JhbHRhemFyIiwid2FnZUlkIjpudWxsLCJyb2xlIjoiYWRtaW4iLCJzdGF0dXMiOiJhY3RpdmUiLCJwaW4iOm51bGwsImdlbmVyYWxJbmZvIjp7ImlkIjoxLCJmaXJzdE5hbWUiOiJkYW5pemEiLCJsYXN0TmFtZSI6ImJhbHRhemFyIiwiYmlydGhkYXkiOm51bGwsIm1vYmlsZU51bWJlciI6NjM5MTcxMjM0NTY3LCJ0ZWxlcGhvbmUiOm51bGwsImVtYWlsIjoiYXpjLmJhbHRhemFyQGFya2NvbnN1bHQuY29tIiwic3RyZWV0IjpudWxsLCJjaXR5IjpudWxsLCJ6aXBDb2RlIjpudWxsfX0sImlhdCI6MTcyMTI5NTU1MywiZXhwIjoxNzIxMjk5MTUzfQ.xUWth_CclPQP9-04iIhCTs-XZeRYciercrMsMqAKLA0
+
+### sort
+GET http://localhost:3000/api/v1/transaction/list?fromDate=2024-05-08&page=1&size=10&store=SuperMart2
+accept: */*
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvYmplY3QiOnsicmVnaXN0cmF0aW9uVGltZXN0YW1wIjoiMjAyNC0wNy0xOFQwOToyMzo0Ni4wMDBaIiwibGFzdFVwZGF0ZVRpbWVzdGFtcCI6IjIwMjQtMDctMThUMDk6MjM6NDYuMDAwWiIsImRlbGV0ZWRBdCI6bnVsbCwiaWQiOjEsInVzZXJuYW1lIjoiZGFuaXphX2JhbHRhemFyIiwid2FnZUlkIjpudWxsLCJyb2xlIjoiYWRtaW4iLCJzdGF0dXMiOiJhY3RpdmUiLCJwaW4iOm51bGwsImdlbmVyYWxJbmZvIjp7ImlkIjoxLCJmaXJzdE5hbWUiOiJkYW5pemEiLCJsYXN0TmFtZSI6ImJhbHRhemFyIiwiYmlydGhkYXkiOm51bGwsIm1vYmlsZU51bWJlciI6NjM5MTcxMjM0NTY3LCJ0ZWxlcGhvbmUiOm51bGwsImVtYWlsIjoiYXpjLmJhbHRhemFyQGFya2NvbnN1bHQuY29tIiwic3RyZWV0IjpudWxsLCJjaXR5IjpudWxsLCJ6aXBDb2RlIjpudWxsfX0sImlhdCI6MTcyMTI5NTU1MywiZXhwIjoxNzIxMjk5MTUzfQ.xUWth_CclPQP9-04iIhCTs-XZeRYciercrMsMqAKLA0
+
+### details transaction
+GET http://localhost:3000/api/v1/transaction/3
+accept: */*
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvYmplY3QiOnsicmVnaXN0cmF0aW9uVGltZXN0YW1wIjoiMjAyNC0wNy0xOFQwOToyMzo0Ni4wMDBaIiwibGFzdFVwZGF0ZVRpbWVzdGFtcCI6IjIwMjQtMDctMThUMDk6MjM6NDYuMDAwWiIsImRlbGV0ZWRBdCI6bnVsbCwiaWQiOjEsInVzZXJuYW1lIjoiZGFuaXphX2JhbHRhemFyIiwid2FnZUlkIjpudWxsLCJyb2xlIjoiYWRtaW4iLCJzdGF0dXMiOiJhY3RpdmUiLCJwaW4iOm51bGwsImdlbmVyYWxJbmZvIjp7ImlkIjoxLCJmaXJzdE5hbWUiOiJkYW5pemEiLCJsYXN0TmFtZSI6ImJhbHRhemFyIiwiYmlydGhkYXkiOm51bGwsIm1vYmlsZU51bWJlciI6NjM5MTcxMjM0NTY3LCJ0ZWxlcGhvbmUiOm51bGwsImVtYWlsIjoiYXpjLmJhbHRhemFyQGFya2NvbnN1bHQuY29tIiwic3RyZWV0IjpudWxsLCJjaXR5IjpudWxsLCJ6aXBDb2RlIjpudWxsfX0sImlhdCI6MTcyMTI5NTU1MywiZXhwIjoxNzIxMjk5MTUzfQ.xUWth_CclPQP9-04iIhCTs-XZeRYciercrMsMqAKLA0

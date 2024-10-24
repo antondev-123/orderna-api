@@ -1,0 +1,35 @@
+# Inventories
+### Get all invetories with pagination
+GET http://localhost:3000/api/v1/inventories?page=0&pageSize=10
+
+### Get all invetories with pagination with sorting by fields
+GET http://localhost:3000/api/v1/inventories?page=0&pageSize=10&sortBy=storeID
+
+### Get invetories with pagination and filter by period
+GET http://localhost:3000/api/v1/inventories?page=0&pageSize=10&filterType=period&limitDate=7
+
+### Create a new inventoryItem
+POST http://localhost:3000/api/v1/inventories/create
+content-type: application/json
+
+{
+    "storeID": 111,
+    "title": "Test inventory by request.http",
+    "unit": "kg",
+    "sk_plu": "test sk_plu"
+}
+
+### Update an inventory item
+PATCH http://localhost:3000/api/v1/inventories/1
+content-type: application/json
+
+{
+    "storeID": 222,
+    "title": "Test inventory by request.http edited",
+    "unit": "g",
+    "sk_plu": "test sk_plu edited"
+}
+
+
+### Delete an inventory item
+DELETE http://localhost:3000/api/v1/inventories/3

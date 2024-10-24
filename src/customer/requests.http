@@ -1,0 +1,37 @@
+#customers
+
+### add customer
+POST http://localhost:3000/api/v1/customer/add
+content-type: application/json
+
+{
+    "store": 1,
+    "firstName": "Jem",
+    "lastName": "Kim",
+    "mobilePhone": "9988776654"
+}
+### edit customer
+PUT http://localhost:3000/api/v1/customer/2/edit
+content-type: application/json
+
+{
+    "store": 2,
+    "firstName": "John",
+    "lastName": "Doe",
+    "mobilePhone": "123456789",
+    "birthday": "1980-01-01"
+}
+### delete customer
+POST http://localhost:3000/api/v1/customer/delete
+content-type: application/json
+
+{
+    "customer": [
+        1
+    ]
+}
+### details customer
+GET http://localhost:3000/api/v1/customer/1
+
+### sort
+GET http://localhost:3000/api/v1/customer/list?fromDate=2024-05-08&page=1&size=5&store=SuperMart2

@@ -1,0 +1,49 @@
+# Opening Hours
+### Get all opening hours
+GET http://localhost:3000/api/v1/opening-hours
+
+### Get opening hours by ID
+GET http://localhost:3000/api/v1/opening-hours/2
+
+### Create new opening hours
+POST http://localhost:3000/api/v1/opening-hours
+content-type: application/json
+
+{
+    "storeID": 1,
+    "openingDayOfWeek": "Monday",
+    "openingTimeSlots": [
+        {
+            "timeSlot": "10:00-12:00"
+        },
+        {
+            "timeSlot": "18:00-22:00"
+        }
+    ]
+}
+
+### Update opening hours by ID
+PATCH http://localhost:3000/api/v1/opening-hours/1
+content-type: application/json
+
+{
+    "openingTimeSlots": [
+        {
+            "timeSlot": "08:00-12:00"
+        },
+        {
+            "timeSlot": "06:00-22:00"
+        }
+    ]
+}
+
+### Delete opening hours by ID
+DELETE http://localhost:3000/api/v1/opening-hours/1
+
+### Bulk delete opening hours
+DELETE http://localhost:3000/api/v1/opening-hours
+content-type: application/json
+
+{
+    "ids": [2, 3, 4]
+}

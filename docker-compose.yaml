@@ -1,0 +1,101 @@
+version: "3"
+
+name: orderna
+
+services:
+  orderna-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 4000:4000
+    image: orderna-api
+    container_name: orderna-api
+    # restart: always
+    env_file:
+      - ./environments/.env.docker
+    depends_on:
+      - orderna-redis
+    networks:
+      - orderna-network
+    command: sh -c "npm run sync-schema:docker && npm start"
+  
+  orderna-db:
+    container_name: orderna-db
+    restart: always
+    ports:
+      - '5434:5432'
+    expose:
+      - '5432'
+    image: postgres:15
+    environment:
+      POSTGRES_USER: 'root'
+      POSTGRES_PASSWORD: 'orderna'
+      POSTGRES_DB: 'orderna-db'
+      POSTGRES_HOST_AUTH_METHOD: 'trust'
+    volumes:
+      - orderna-db-data:/var/lib/postgresql/data
+    networks:
+      - orderna-network
+
+  orderna-test-db:
+    container_name: orderna-test-db
+    restart: always
+    ports:
+      - '5436:5432'
+    expose:
+      - '5432'
+    image: postgres:15
+    environment:
+      POSTGRES_USER: 'root'
+      POSTGRES_PASSWORD: 'orderna'
+      POSTGRES_DB: 'orderna-test-db'
+      POSTGRES_HOST_AUTH_METHOD: 'trust'
+    networks:
+      - orderna-network
+
+  orderna-redis:
+    container_name: orderna-redis
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - orderna-data-volume:/root/redis
+      - orderna-conf-volume:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_HOST="127.0.0.1"
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD="foobared"
+      - REDIS_SECRETKEY=redissecretkey
+    networks:
+      - orderna-network
+  
+  orderna-pgadmin:
+    image: dpage/pgadmin4
+    container_name: orderna-pgadmin
+    restart: always
+    ports:
+      - '8888:80'
+    environment:
+      PGADMIN_DEFAULT_EMAIL: developer@orderna.com
+      PGADMIN_DEFAULT_PASSWORD: orderna
+    depends_on:
+      - orderna-db
+    volumes:
+      - orderna-pgadmin-data:/var/lib/pgadmin
+    networks:
+      - orderna-network
+
+volumes:
+    orderna-db-data:
+      driver: local
+    orderna-pgadmin-data:
+      driver: local
+    orderna-data-volume:
+    orderna-conf-volume:
+
+networks:
+  orderna-network:
+    name: orderna-network
+    driver: bridge

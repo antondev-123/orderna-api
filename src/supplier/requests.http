@@ -1,0 +1,70 @@
+# Supplier
+### Add Supplier
+POST http://localhost:3000/suppliers
+content-type: application/json
+
+{
+  "supplierFirstName": "Jungwon",
+  "supplierLastName": "Jung",
+  "supplierCompany": "Doe Inc.",
+  "supplierZipCode": "12345",
+  "supplierCity": "CityName",
+  "supplierStreet": "StreetName",
+  "supplierMobilePhone": "123456789",
+  "supplierTelephone": "0987654321",
+  "supplierEmail": "john.doe@example.com",
+  "supplierNote": "Some note"
+}
+
+
+### Update Supplier
+PATCH http://localhost:3000/suppliers/:id
+Content-Type: application/json
+
+{
+  "supplierFirstName": "Jungwon",
+  "supplierLastName": "Jung",
+  "supplierCompany": "Doe Inc.",
+  "supplierZipCode": "12345",
+  "supplierCity": "CityName",
+  "supplierStreet": "StreetName",
+  "supplierMobilePhone": "123456789",
+  "supplierTelephone": "0987654321",
+  "supplierEmail": "john.doe@example.com",
+  "supplierNote": "Some note"
+}
+
+### Filter Discounts 
+GET http://localhost:3000/suppliers/discounts?
+
+# Filter by supplier name: ?name=John
+# Filter by period: ?periodStart=2023-01-01&periodEnd=2023-12-31
+# Filter by store: ?store=StoreName
+# Filter by status: ?status=active
+#Filter by payment type: ?paymentType=credit
+
+### Delete a Supplier
+DELETE http://localhost:3000/suppliers/:id
+
+### Delete Supplier in Bulk
+DELETE http://localhost:3000/suppliers
+Content-Type: application/json
+
+{
+  "ids": [1, 2, 3]
+}
+
+
+### Pagination and sort
+GET http://localhost:3000/suppliers?
+
+## Pagination: ?page=1&limit=10
+## Sort :
+# ID: ?sort=id
+# Name: ?sort=name
+# Email: ?sort=email
+# Address: ?sort=address
+# Orders: ?sort=orders
+# Last order: ?sort=lastOrder
+# Total spent: ?sort=totalSpent
+# Refunds: ?sort=refunds // dont have t transcition module
