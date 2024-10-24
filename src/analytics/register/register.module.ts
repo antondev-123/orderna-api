@@ -14,4 +14,4 @@ import { TransactionRepository } from "../../transaction/repositories/transactio
 	providers: [RegisterService, RegisterRepository, TransactionRepository],
 	controllers: [RegisterController],
 })
-export class RegisterModule {}
+export class RegisterModule { }

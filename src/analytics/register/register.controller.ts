@@ -34,7 +34,7 @@ import { RegisterDto } from "./dtos/register.dto";
 	type: ErrorResponseDto,
 })
 export class RegisterController {
-	constructor(private readonly registerService: RegisterService) {}
+	constructor(private readonly registerService: RegisterService) { }
 
 	@Get(urlsConstant.API_GET_ANALYTICS_REGISTER_SUMMARY)
 	@ResponseSerializer(HttpStatus.OK, analyticsResponseMessage.GET_ANALYTICS_REGISTER_SUMMARY.EN)

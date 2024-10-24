@@ -10,7 +10,7 @@ export class RegisterService {
 	constructor(
 		private readonly registerRepository: RegisterRepository,
 		private readonly transactionRepository: TransactionRepository,
-	) {}
+	) { }
 
 	async getRegisterSummary(filterData: RegisterDto) {
 		try {
